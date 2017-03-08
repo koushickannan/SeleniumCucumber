@@ -73,7 +73,7 @@ public class AddUser {
 		String successText = driver.findElement(By.xpath("//tr/td[2]/div[2]/div[3]/div[2]")).getText();
 
 		System.out.println(successText);
-		System.out.println("Success");
+		
 	}
 
 	@After

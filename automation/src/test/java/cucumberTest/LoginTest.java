@@ -68,7 +68,7 @@ public class LoginTest {
 			System.out.println("Test Result: Pass");
 		}
 
-		System.out.println("Succes");
+		System.out.println("Success");
 
 	}
 
