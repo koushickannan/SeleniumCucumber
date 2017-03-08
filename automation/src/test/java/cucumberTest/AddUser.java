@@ -17,13 +17,13 @@ public class AddUser {
 
 	Config co = new Config();
 	Prep prep = new Prep();
-	Select s ;
+	Select s;
 
 	private StringBuffer verificationErrors = new StringBuffer();
 
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "/automation/CHDriver/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 
@@ -66,14 +66,14 @@ public class AddUser {
 		driver.findElement(By.xpath("//input[@id='cPassword']")).sendKeys(co.getNewConfirmPassword());
 		s = new Select(driver.findElement(By.id("iotSubSystem_3_combobox")));
 		s.selectByVisibleText(co.getPartnerManagement());
-		
+
 		driver.findElement(By.xpath("//input[@value='Create']")).click();
 
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		String successText = driver.findElement(By.xpath("//tr/td[2]/div[2]/div[3]/div[2]")).getText();
 
 		System.out.println(successText);
-		
+
 	}
 
 	@After

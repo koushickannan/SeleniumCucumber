@@ -112,5 +112,13 @@ public class Config {
 		return p.getProperty("PartnerManagement");
 
 	} 
+	
+	public String getBrowserName() throws IOException{
+
+		fi= new FileInputStream(System.getProperty("user.dir")+"\\config.properties");
+		p.load(fi);
+		return p.getProperty("BrowserName");
+
+	} 
 
 }
