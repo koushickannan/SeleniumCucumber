@@ -23,7 +23,7 @@ public class AddUser {
 
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/automation/CHDriver/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 

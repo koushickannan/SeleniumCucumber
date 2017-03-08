@@ -23,7 +23,7 @@ public class LoginTest {
 	@Before
 	public void setUp() throws Exception {
 
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\rajuk\\git\\IoTProject\\CHDriver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/automation/CHDriver/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 
@@ -33,7 +33,7 @@ public class LoginTest {
 	@Test
 	public void loginForm() throws Exception {
 		try {
-			String actualTitle = "";		
+			String actualTitle = "";
 
 			driver.get(co.getBaseUrl());
 

@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 //import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "/CucumberFramework/Feature/IoT.feature", plugin = { "pretty",
+@CucumberOptions(features = "/automation/Feature/auto.feature", plugin = { "pretty",
         "html:target/site/cucumber-pretty",
         "rerun:target/rerun.txt",
         "json:target/cucumber1.json" })
