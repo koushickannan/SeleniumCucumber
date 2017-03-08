@@ -1,0 +1,1 @@
+java -Dwebdriver.chrome.driver="../CHDriverServer/chromedriver.exe" -Dwebdriver.ie.driver="../IEDriverServer/IEDriverServer.exe" -jar selenium-server-standalone.jar -role node -port 5557 -hub http://localhost:4444/grid/register -browser "browserName=internet explorer,version=9,platform=WINDOWS,maxInstances=5"
