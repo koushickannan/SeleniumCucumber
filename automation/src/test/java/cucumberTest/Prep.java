@@ -53,5 +53,14 @@ public class Prep extends Config {
 		return (sBuffer.toString());
 
 	}
+	
+	public String readDeviceName() throws Exception {
+
+		io = getResourceName();
+		rand = Integer.toString(n);
+		rest = io + rand;
+		return rest;
+
+	}
 
 }

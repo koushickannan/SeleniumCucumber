@@ -50,6 +50,12 @@ public class AddAsset {
 			driver.findElement(By.id("username")).sendKeys(co.getUserName());
 			driver.findElement(By.id("password")).sendKeys(co.getPassword());
 			driver.findElement(By.xpath("//input[@value='Log in']")).click();
+			
+			s = new Select(driver.findElement(By.id("resourceType")));
+			s.selectByVisibleText(co.getResourceType());
+			
+			s = new Select(driver.findElement(By.id("groupName")));
+			s.selectByVisibleText(co.getTenant());
 
 		} catch (Exception e) {
 			verificationErrors.append(e.getMessage());
@@ -62,6 +68,8 @@ public class AddAsset {
 	public void addUser() throws Exception {
 		driver.findElement(By.xpath("//*[contains(@class,'nav-label') and text()='Asset Mgmt.']")).click();
 		driver.findElement(By.xpath("//a/li[contains(text(),'Add Asset') and @id='asset_2']")).click();
+		driver.findElement(By.xpath("//input[@name='resourceName']")).sendKeys(prep.readDeviceName());
+		
 		
 
 	}
