@@ -2,6 +2,7 @@ package cucumberTest;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.After;
 //import org.junit.Assert;
 import org.junit.Before;
@@ -9,6 +10,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class AddUser {
@@ -18,27 +20,35 @@ public class AddUser {
 	Config co = new Config();
 	Prep prep = new Prep();
 	Select s;
+	Platform po = new Platform();
 
 	private StringBuffer verificationErrors = new StringBuffer();
 
 	@Before
 	public void setUp() throws Exception {
+		PropertyConfigurator.configure("log4j.properties");
+
 		System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
 		driver = new ChromeDriver();
+
+		// po.readBrowserName();
+		//
+		// driver.get(po.readURL());
 		driver.manage().window().maximize();
 
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.get(co.getBaseUrl());
 	}
 
 	@Test
 	public void loginForm() throws Exception {
 		try {
 
-			String baseUrl = "http://15.213.51.128:8080/dsm/";
+			// String baseUrl = "http://15.213.51.128:8080/dsm/";
 
-			driver.get(baseUrl);
-			driver.findElement(By.id("username")).sendKeys("admin");
-			driver.findElement(By.id("password")).sendKeys("password");
+			driver.get(co.getBaseUrl());
+			driver.findElement(By.id("username")).sendKeys(co.getUserName());
+			driver.findElement(By.id("password")).sendKeys(co.getPassword());
 			driver.findElement(By.xpath("//input[@value='Log in']")).click();
 
 		} catch (Exception e) {
@@ -51,7 +61,7 @@ public class AddUser {
 	@Test
 	public void addUser() throws Exception {
 		driver.findElement(By.xpath("//*[contains(@class,'nav-label') and text()='Users']")).click();
-		driver.findElement(By.xpath("//a/li[contains(text(),'Create User')]")).click();
+		driver.findElement(By.xpath("//a/li[contains(text(),'Create User') and @id='users_3']")).click();
 		driver.findElement(By.xpath("//input[@id='fName']")).sendKeys(co.getFirstName());
 		driver.findElement(By.xpath("//input[@id='lName']")).sendKeys(co.getLastName());
 		driver.findElement(By.xpath("//input[@id='emailId']")).sendKeys(prep.readEmailId());

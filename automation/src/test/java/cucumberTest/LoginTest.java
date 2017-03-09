@@ -14,7 +14,7 @@ import org.junit.*;
 //import common.AlreadyRunException;
 
 public class LoginTest {
-	WebDriver driver;
+	WebDriver driver = null;
 
 	private StringBuffer verificationErrors = new StringBuffer();
 	Config co = new Config();
@@ -25,16 +25,19 @@ public class LoginTest {
 	@Before
 	public void setUp() throws Exception {
 
-//		System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
-//		driver = new ChromeDriver();
+		PropertyConfigurator.configure("log4j.properties");
 
-		
-		po.readBrowserName();
+		System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
+		driver = new ChromeDriver();
+
+		// po.readBrowserName();
+		//
+		// driver.get(po.readURL());
 		driver.manage().window().maximize();
 
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		PropertyConfigurator.configure("log4j.properties");
-		
+		driver.get(co.getBaseUrl());
+
 	}
 
 	@Test
@@ -42,7 +45,7 @@ public class LoginTest {
 		try {
 			String actualTitle = "";
 
-			driver.get(co.getBaseUrl());
+			// driver.get(co.getBaseUrl());
 
 			actualTitle = driver.getTitle();
 
