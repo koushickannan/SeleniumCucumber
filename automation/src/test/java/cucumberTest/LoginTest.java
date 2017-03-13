@@ -1,10 +1,10 @@
 package cucumberTest;
 
-import java.util.concurrent.TimeUnit;
+//import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
 //import org.testng.log4testng.Logger;
 import org.apache.log4j.PropertyConfigurator;
 //import org.testng.annotations.AfterMethod;
@@ -14,7 +14,7 @@ import org.junit.*;
 //import common.AlreadyRunException;
 
 public class LoginTest {
-	WebDriver driver ;
+	WebDriver driver;
 
 	private StringBuffer verificationErrors = new StringBuffer();
 	Config co = new Config();
@@ -26,17 +26,18 @@ public class LoginTest {
 	public void setUp() throws Exception {
 
 		PropertyConfigurator.configure("log4j.properties");
+		
+		// System.setProperty("webdriver.chrome.driver",
+		// "./CHDriver/chromedriver.exe");
+		// driver = new ChromeDriver();
 
-//		System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
-//		driver = new ChromeDriver();
-
-//		po.readBrowserName();
-//		
-//		driver.get(po.readURL());
-//		driver.manage().window().maximize();
-//
-//		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-//		driver.get(co.getBaseUrl());
+		// po.readBrowserName();
+		//
+		// driver.get(po.readURL());
+		// driver.manage().window().maximize();
+		//
+		// driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		// driver.get(co.getBaseUrl());
 
 	}
 
@@ -47,11 +48,11 @@ public class LoginTest {
 
 			// driver.get(co.getBaseUrl());
 
-//			actualTitle = driver.getTitle();
-//
-//			System.out.println("Page title:" + actualTitle);
+			actualTitle = driver.getTitle();
 
-			// Assert.assertEquals("Log in to saml-demo", actualTitle);
+			System.out.println("Page title:" + actualTitle);
+
+			Assert.assertEquals("Log in to saml-demo", actualTitle);
 
 			driver.findElement(By.id("username")).sendKeys(co.getUserName());
 			driver.findElement(By.id("password")).sendKeys(co.getPassword());

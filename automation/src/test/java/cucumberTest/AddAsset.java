@@ -70,6 +70,11 @@ public class AddAsset {
 		driver.findElement(By.xpath("//a/li[contains(text(),'Add Asset') and @id='asset_2']")).click();
 		driver.findElement(By.xpath("//input[@name='resourceName']")).sendKeys(prep.readDeviceName());
 		
+		s = new Select(driver.findElement(By.name("resourceType")));
+		s.selectByVisibleText(co.getResourceType());
+		
+		
+		
 		
 
 	}
