@@ -4,10 +4,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 public class Config {
 	
 	Properties p = new Properties();
 	FileInputStream fi;
+	final static Logger logger = Logger.getLogger(Config.class);
 	
 	public String getUserName() throws IOException{
 

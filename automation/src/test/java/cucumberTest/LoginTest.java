@@ -1,24 +1,21 @@
 package cucumberTest;
 
-//import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//import org.testng.log4testng.Logger;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.apache.log4j.PropertyConfigurator;
-//import org.testng.annotations.AfterMethod;
-//import org.testng.annotations.BeforeMethod;
-//import org.testng.annotations.Test;
 import org.junit.*;
-//import common.AlreadyRunException;
 
 public class LoginTest {
 	WebDriver driver;
 
 	private StringBuffer verificationErrors = new StringBuffer();
 	Config co = new Config();
-	Platform po = new Platform();
+//	Platform po = new Platform();
+//	Selenium tp = new Selenium();
 
 	String expectedTitle = "UIoT | Universal Internet Of Things";
 
@@ -26,18 +23,16 @@ public class LoginTest {
 	public void setUp() throws Exception {
 
 		PropertyConfigurator.configure("log4j.properties");
-		
-		// System.setProperty("webdriver.chrome.driver",
-		// "./CHDriver/chromedriver.exe");
-		// driver = new ChromeDriver();
+		System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
+		driver = new ChromeDriver();
 
-		// po.readBrowserName();
-		//
-		// driver.get(po.readURL());
-		// driver.manage().window().maximize();
-		//
-		// driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		// driver.get(co.getBaseUrl());
+//		po.readBrowserName();
+
+		driver.get(co.getBaseUrl());
+		driver.manage().window().maximize();
+
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.get(co.getBaseUrl());
 
 	}
 
@@ -85,7 +80,8 @@ public class LoginTest {
 
 	@After
 	public void tearDown() throws Exception {
-		driver.close();
+//		tp.takeScreenShot("${base.dir}/test-results");
+		driver.quit();
 
 	}
 
