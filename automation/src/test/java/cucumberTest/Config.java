@@ -139,6 +139,38 @@ public class Config {
 		return p.getProperty("resourceType");
 
 	} 
+	
+	public String getDeviceProfile() throws IOException{
+
+		fi= new FileInputStream(System.getProperty("user.dir")+"\\config.properties");
+		p.load(fi);
+		return p.getProperty("deviceProfile");
+
+	} 
+	
+	public String getScreenshotPath() throws IOException{
+
+		fi= new FileInputStream(System.getProperty("user.dir")+"\\config.properties");
+		p.load(fi);
+		return p.getProperty("screenshot");
+
+	} 
+	
+	public String getAppEUI() throws IOException{
+
+		fi= new FileInputStream(System.getProperty("user.dir")+"\\config.properties");
+		p.load(fi);
+		return p.getProperty("AppEUI");
+
+	} 
+	
+	public String getMachineId() throws IOException{
+
+		fi= new FileInputStream(System.getProperty("user.dir")+"\\config.properties");
+		p.load(fi);
+		return p.getProperty("machineid");
+
+	} 
 
 
 }

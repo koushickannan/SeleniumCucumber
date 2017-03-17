@@ -9,13 +9,13 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 
-public class Selenium {
-	WebDriver driver;
+public class Selenium extends Config{
 	
 	
-	 public String takeScreenShot(String reportingPath) throws IOException, Exception {
+	 public String takeScreenShot(WebDriver driver,String screenshot) throws IOException, Exception {
+		 String reportingPath = System.getProperty("user.dir")+getScreenshotPath();
 	        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-	        String imageName = reportingPath + "/" + generateTimeStamp() + ".png";
+	        String imageName = reportingPath + "/" + screenshot + generateTimeStamp() + ".png";
 	        FileUtils.copyFile(scrFile, new File(imageName));
 	        return imageName;
 	    }
@@ -25,5 +25,7 @@ public class Selenium {
 	        // System.out.print("Unique string - " + String.valueOf(ts));
 	        return String.valueOf(ts);
 	    }
+
+	
 }
 

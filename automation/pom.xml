@@ -112,6 +112,13 @@
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>log4j-1.2.17</groupId>
+			<artifactId>log4j-1.2.17</artifactId>
+			<version>1.2.17</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/log4j-1.2.17.jar</systemPath>
+		</dependency>
 	</dependencies>
 	<profiles>
 		<profile>

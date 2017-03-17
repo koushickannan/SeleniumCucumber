@@ -4,18 +4,17 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.*;
 
 public class LoginTest {
 	WebDriver driver;
+	final static Logger logger = Logger.getLogger(LoginTest.class);
 
 	private StringBuffer verificationErrors = new StringBuffer();
 	Config co = new Config();
-//	Platform po = new Platform();
-//	Selenium tp = new Selenium();
+	Platform po = new Platform();
 
 	String expectedTitle = "UIoT | Universal Internet Of Things";
 
@@ -23,27 +22,18 @@ public class LoginTest {
 	public void setUp() throws Exception {
 
 		PropertyConfigurator.configure("log4j.properties");
-		System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
-		driver = new ChromeDriver();
-
-//		po.readBrowserName();
-
-		driver.get(co.getBaseUrl());
+		driver = po.readBrowserName();
 		driver.manage().window().maximize();
-
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.get(co.getBaseUrl());
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 	}
 
 	@Test
 	public void loginForm() throws Exception {
 		try {
-			String actualTitle = "";
 
-			// driver.get(co.getBaseUrl());
-
-			actualTitle = driver.getTitle();
+			String actualTitle = driver.getTitle();
 
 			System.out.println("Page title:" + actualTitle);
 
@@ -74,14 +64,12 @@ public class LoginTest {
 			System.out.println("Test Result: Pass");
 		}
 
-		System.out.println("Success");
-
 	}
 
 	@After
 	public void tearDown() throws Exception {
-//		tp.takeScreenShot("${base.dir}/test-results");
-		driver.quit();
+
+		po.tearDown("Login");
 
 	}
 

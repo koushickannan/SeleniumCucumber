@@ -2,15 +2,13 @@ package cucumberTest;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.After;
-//import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class AddUser {
@@ -23,30 +21,22 @@ public class AddUser {
 	Platform po = new Platform();
 
 	private StringBuffer verificationErrors = new StringBuffer();
+	final static Logger logger = Logger.getLogger(AddUser.class);
 
 	@Before
 	public void setUp() throws Exception {
 		PropertyConfigurator.configure("log4j.properties");
-
-		System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
-		driver = new ChromeDriver();
-
-		// po.readBrowserName();
-		//
-		// driver.get(po.readURL());
+		driver = po.readBrowserName();
 		driver.manage().window().maximize();
-
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.get(co.getBaseUrl());
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		logger.debug("Got the URL");
 	}
 
 	@Test
 	public void loginForm() throws Exception {
 		try {
 
-			// String baseUrl = "http://15.213.51.128:8080/dsm/";
-
-			driver.get(co.getBaseUrl());
 			driver.findElement(By.id("username")).sendKeys(co.getUserName());
 			driver.findElement(By.id("password")).sendKeys(co.getPassword());
 			driver.findElement(By.xpath("//input[@value='Log in']")).click();
@@ -61,6 +51,7 @@ public class AddUser {
 	@Test
 	public void addUser() throws Exception {
 		driver.findElement(By.xpath("//*[contains(@class,'nav-label') and text()='Users']")).click();
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//a/li[contains(text(),'Create User') and @id='users_3']")).click();
 		driver.findElement(By.xpath("//input[@id='fName']")).sendKeys(co.getFirstName());
 		driver.findElement(By.xpath("//input[@id='lName']")).sendKeys(co.getLastName());
@@ -88,7 +79,7 @@ public class AddUser {
 
 	@After
 	public void tearDown() throws Exception {
-		driver.close();
+		po.tearDown("AddUser");
 
 	}
 
