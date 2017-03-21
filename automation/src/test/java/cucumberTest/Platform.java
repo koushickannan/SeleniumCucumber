@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class Platform extends Config {
 
@@ -31,9 +32,12 @@ public class Platform extends Config {
 		String browser = getBrowserName();
 
 		if (browser.equalsIgnoreCase("CH")) {
-
+			
+			DesiredCapabilities capabilities = new DesiredCapabilities() ;
+			capabilities.setBrowserName("chrome");
+			capabilities.getVersion();
 			System.setProperty("webdriver.chrome.driver", "./CHDriver/chromedriver.exe");
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(capabilities);
 
 		}
 
